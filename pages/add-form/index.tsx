@@ -1,8 +1,9 @@
 import { Formik, Field, FieldArray, getIn } from "formik";
 import React, { FC, useState, useEffect } from "react";
 import formValidation from "./yup";
-import { useStore, SET, ADD, UPDATE } from "../../contexts/store/store";
+import { useStore, SET, ADD } from "../../contexts/store/store";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Index: FC<any> = ({ formId }) => {
     const { forms, action }: any = useStore();
@@ -43,12 +44,13 @@ const Index: FC<any> = ({ formId }) => {
             });
         } else {
             action({
-                type: UPDATE,
+                type: SET,
                 path: `forms[${formIndex}]`,
-                payload: forms ? form : [form],
+                payload: JSON.parse(JSON.stringify(form)),
             });
         }
 
+        toast.success("mission accomplished");
         router.push("/");
     };
 
@@ -107,7 +109,7 @@ const Index: FC<any> = ({ formId }) => {
                                                     <div className="container" key={index}>
                                                         <div className="row border border-2  mt-4 pb-3 rounded">
                                                             <div className="d-flex mt-3 align-items-center">
-                                                                <h5 className="m-0">Field {index + 1}</h5>
+                                                                <h5 className="m-0">{field.type} input</h5>
 
                                                                 <div style={{ marginLeft: "auto" }}>
                                                                     {values.fields.length > 1 && (

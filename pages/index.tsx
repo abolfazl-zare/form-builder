@@ -1,28 +1,18 @@
-import { useStore } from "../contexts/store/store";
-import { useEffect } from "react";
+import { useStore, REMOVE } from "../contexts/store/store";
 import { useRouter } from "next/router";
-import { Menu } from "@headlessui/react";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function Home() {
     const { forms, action }: any = useStore();
     const router = useRouter();
 
-    useEffect(() => {
-        // action({
-        //     type: ADD,
-        //     path: "items",
-        //     payload: [{ name: "set abolfazl" }],
-        // });
-    }, []);
-
-    console.log("forms", forms);
-
-    const links = [
-        { href: "/account-settings", label: "Account settings" },
-        { href: "/support", label: "Support" },
-        { href: "/license", label: "License" },
-        { href: "/sign-out", label: "Sign out" },
-    ];
+    const handelDelete = (formId: number) => {
+        let formIndex = forms.findIndex((item: any) => item.id === formId);
+        action({
+            type: REMOVE,
+            path: `forms[${formIndex}]`,
+        });
+    };
 
     return (
         <div className="container">
@@ -33,13 +23,13 @@ export default function Home() {
                     Create Form
                 </button>
             </div>
-            {forms ? (
+            {forms && forms.length ? (
                 <table className="table table-bordered mt-5">
                     <thead>
                         <tr>
                             <th scope="col">#ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Form Title</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,28 +38,22 @@ export default function Home() {
                                 <th scope="row">{id}</th>
                                 <td>{title}</td>
                                 <td>
-                                    <button className="btn btn-light" onClick={() => router.push(`/edit-form/${id}`)}>
-                                        Edit
-                                    </button>{" "}
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                                            Actions
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={() => router.push(`/edit-form/${id}`)}>
+                                                Edit
+                                            </Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handelDelete(id)}>Delete</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => router.push(`/form/${id}`)}>
+                                                Preview
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </td>
-                                <td>
-                                    <Menu>
-                                        <Menu.Button>Options</Menu.Button>
-                                        <Menu.Items>
-                                            {links.map((link) => (
-                                                <Menu.Item
-                                                    as="a"
-                                                    key={link.href}
-                                                    href={link.href}
-                                                    className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
-                                                >
-                                                    {link.label}
-                                                </Menu.Item>
-                                            ))}
-                                        </Menu.Items>
-                                    </Menu>
-                                </td>
-                                <td>@mdo</td>
                             </tr>
                         ))}
                     </tbody>

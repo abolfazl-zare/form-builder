@@ -1,4 +1,4 @@
-import React, { Component, FC } from "react";
+import React, { FC } from "react";
 import AddForm from "../add-form/index";
 import { useRouter } from "next/router";
 
