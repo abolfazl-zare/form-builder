@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <StoreProvider>
-            <main className={`${styles.main}`}>
+            <main className="main">
                 <Component {...pageProps} />
 
                 <ToastContainer

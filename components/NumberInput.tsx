@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 
-const NumberInput: FC<any> = ({ index, handleChange, handleBlur, field }) => {
+const NumberInput: FC<any> = ({ values, handleChange, handleBlur, field }) => {
     return (
         <input
             type="number"
             className="form-control"
-            name={`fields.${index}.value`}
+            name={field.title}
             onChange={handleChange}
             onBlur={handleBlur}
-            value={field.value || ""}
+            value={values[field.title] || ""}
         />
     );
 };

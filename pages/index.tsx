@@ -17,47 +17,57 @@ export default function Home() {
     return (
         <div className="container">
             <div className="d-flex justify-content-between">
-                <h3>Forms</h3>
+                <h2>Forms</h2>
 
-                <button className="btn btn-outline-primary" onClick={() => router.push("/add-form")}>
+                <button className="btn btn-primary" onClick={() => router.push("/add-form")}>
                     Create Form
                 </button>
             </div>
             {forms && forms.length ? (
-                <table className="table table-bordered mt-5">
-                    <thead>
-                        <tr>
-                            <th scope="col">#ID</th>
-                            <th scope="col">Form Title</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {forms.map(({ title, id }: { title: string; id: number }, key: number) => (
-                            <tr key={key}>
-                                <th scope="row">{id}</th>
-                                <td>{title}</td>
-                                <td>
-                                    <Dropdown>
-                                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                            Actions
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item onClick={() => router.push(`/edit-form/${id}`)}>
-                                                Edit
-                                            </Dropdown.Item>
-                                            <Dropdown.Item onClick={() => handelDelete(id)}>Delete</Dropdown.Item>
-                                            <Dropdown.Item onClick={() => router.push(`/form/${id}`)}>
-                                                Preview
-                                            </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </td>
+                <div className="border border-2 rounded-3 mt-4">
+                    <table className="table mb-0">
+                        <thead>
+                            <tr>
+                                <th style={{ background: "#fffafa" }} scope="col">
+                                    #ID
+                                </th>
+                                <th style={{ background: "#fffafa" }} scope="col">
+                                    Form Title
+                                </th>
+                                <th style={{ background: "#fffafa" }} scope="col"></th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {forms.map(({ title, id }: { title: string; id: number }, key: number) => (
+                                <tr key={key}>
+                                    <th scope="row">{id}</th>
+                                    <td>{title}</td>
+                                    <td>
+                                        <div className="d-flex justify-content-end px-3">
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                                    more
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item onClick={() => router.push(`/edit-form/${id}`)}>
+                                                        Edit
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => handelDelete(id)}>
+                                                        Delete
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => router.push(`/form/${id}`)}>
+                                                        Preview
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             ) : (
                 <div className="alert alert-primary mt-4" role="alert">
                     There is no data to display

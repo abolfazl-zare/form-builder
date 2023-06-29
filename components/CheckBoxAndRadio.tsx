@@ -9,7 +9,7 @@ const CheckBoxAndRadio: FC<any> = ({ index, field }) => {
                     <Field
                         className="form-check-input"
                         type={field.type}
-                        name={`fields.${index}.value`}
+                        name={field.title}
                         id={`fields.${index}.value.${key}`}
                         value={key.toString()}
                     />

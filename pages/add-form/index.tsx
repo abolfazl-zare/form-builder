@@ -5,6 +5,7 @@ import { useStore, SET, ADD } from "../../contexts/store/store";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { Form, Field as FieldInterFace } from "./../../interfaces/form";
+import { TbTrash, TbArrowBigUp, TbArrowBigDown, TbPlus } from "react-icons/tb";
 
 const Index: FC<any> = ({ formId }) => {
     const store: any = useStore();
@@ -20,7 +21,7 @@ const Index: FC<any> = ({ formId }) => {
                 title: "",
                 label: "",
                 value: "",
-                type: "number",
+                type: "text",
                 description: "",
                 required: "true",
                 format: "",
@@ -87,11 +88,9 @@ const Index: FC<any> = ({ formId }) => {
                             }
                         };
 
-                        console.log(errors);
-
                         return (
                             <form onSubmit={handleSubmit}>
-                                <div className="col-xl-4 mt-5 pb-3">
+                                <div className="col-xl-4 mt-4 pt-1 pb-1">
                                     <div className="form-group">
                                         <label>Form Title</label>
                                         <input
@@ -114,7 +113,7 @@ const Index: FC<any> = ({ formId }) => {
                                             {values.fields &&
                                                 values.fields.map((field: FieldInterFace, index) => (
                                                     <div className="container" key={index}>
-                                                        <div className="row border border-2  mt-4 pb-3 rounded">
+                                                        <div className="row border border-2  mt-4 pb-3 rounded bg-light">
                                                             <div className="d-flex mt-3 align-items-center">
                                                                 <h5 className="m-0">{field.type} input</h5>
 
@@ -122,41 +121,43 @@ const Index: FC<any> = ({ formId }) => {
                                                                     {values.fields.length > 1 && (
                                                                         <>
                                                                             <span
-                                                                                className=" mx-4"
+                                                                                className=" mx-4 text-secondary"
                                                                                 style={{
-                                                                                    fontSize: "18px",
+                                                                                    fontSize: "24px",
                                                                                     cursor: "pointer",
                                                                                 }}
                                                                                 onClick={() =>
                                                                                     arrayHelpers.remove(index)
                                                                                 }
                                                                             >
-                                                                                ❌
+                                                                                <TbTrash />
                                                                             </span>
                                                                             <span
+                                                                                className="mx-2 text-secondary"
                                                                                 style={{
-                                                                                    fontSize: "22px",
+                                                                                    fontSize: "25px",
                                                                                     cursor: "pointer",
                                                                                 }}
                                                                                 onClick={() =>
                                                                                     arrayHelpers.move(index, index + 1)
                                                                                 }
                                                                             >
-                                                                                ⬇️
+                                                                                <TbArrowBigDown />
                                                                             </span>
                                                                         </>
                                                                     )}
                                                                     {index > 0 && (
                                                                         <span
+                                                                            className="text-secondary"
                                                                             style={{
-                                                                                fontSize: "22px",
+                                                                                fontSize: "25px",
                                                                                 cursor: "pointer",
                                                                             }}
                                                                             onClick={() =>
                                                                                 arrayHelpers.move(index, index - 1)
                                                                             }
                                                                         >
-                                                                            ⬆️
+                                                                            <TbArrowBigUp />
                                                                         </span>
                                                                     )}
                                                                 </div>
@@ -267,37 +268,26 @@ const Index: FC<any> = ({ formId }) => {
                                                                     name={`fields.${index}.options`}
                                                                     render={(arrayHelpers2: any) => (
                                                                         <div className="container">
-                                                                            <div className="row border border-2  mx-0 mt-3 pb-3 rounded">
+                                                                            <div className="row border shadow-inset p-2 border-2  mx-0 mt-4 pb-4 rounded">
                                                                                 <h5 className="mt-3">options</h5>
                                                                                 {field.options &&
                                                                                     field.options.map(
                                                                                         (option, index2) => (
                                                                                             <div
-                                                                                                className="col-xl-4 mt-3"
+                                                                                                className="col-xl-6 mt-3"
                                                                                                 key={index2}
                                                                                             >
                                                                                                 <div className="form-group">
-                                                                                                    <label className="d-flex">
-                                                                                                        option{" "}
-                                                                                                        {index2 + 1}
-                                                                                                        {index2 > 0 && (
-                                                                                                            <div
-                                                                                                                className="mx-2"
-                                                                                                                style={{
-                                                                                                                    fontSize:
-                                                                                                                        "14px",
-                                                                                                                    cursor: "pointer",
-                                                                                                                    filter: "brightness(0)",
-                                                                                                                }}
-                                                                                                                onClick={() =>
-                                                                                                                    arrayHelpers2.remove(
-                                                                                                                        index2
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                ❌
-                                                                                                            </div>
-                                                                                                        )}
+                                                                                                    <label
+                                                                                                        className="d-flex"
+                                                                                                        style={{
+                                                                                                            gap: "15px",
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        <span>
+                                                                                                            option{" "}
+                                                                                                            {index2 + 1}
+                                                                                                        </span>
                                                                                                     </label>
 
                                                                                                     <div
@@ -321,12 +311,31 @@ const Index: FC<any> = ({ formId }) => {
                                                                                                                 option.title
                                                                                                             }
                                                                                                         />
+                                                                                                        {field.options
+                                                                                                            .length >
+                                                                                                            1 && (
+                                                                                                            <div
+                                                                                                                className="btn btn-outline-secondary"
+                                                                                                                onClick={() =>
+                                                                                                                    arrayHelpers2.remove(
+                                                                                                                        index2
+                                                                                                                    )
+                                                                                                                }
+                                                                                                            >
+                                                                                                                <TbTrash
+                                                                                                                    style={{
+                                                                                                                        fontSize:
+                                                                                                                            "20px",
+                                                                                                                    }}
+                                                                                                                />
+                                                                                                            </div>
+                                                                                                        )}
                                                                                                         {index2 + 1 ===
                                                                                                             field
                                                                                                                 .options
                                                                                                                 .length && (
                                                                                                             <button
-                                                                                                                className="btn btn-outline-success"
+                                                                                                                className="btn btn-outline-secondary"
                                                                                                                 onClick={() => {
                                                                                                                     arrayHelpers2.push(
                                                                                                                         {
@@ -336,7 +345,12 @@ const Index: FC<any> = ({ formId }) => {
                                                                                                                 }}
                                                                                                                 type="button"
                                                                                                             >
-                                                                                                                +
+                                                                                                                <TbPlus
+                                                                                                                    style={{
+                                                                                                                        fontSize:
+                                                                                                                            "20px",
+                                                                                                                    }}
+                                                                                                                />
                                                                                                             </button>
                                                                                                         )}
                                                                                                     </div>
@@ -369,8 +383,8 @@ const Index: FC<any> = ({ formId }) => {
                                     )}
                                 />
 
-                                <div className="col-xl-12 mt-5 d-flex justify-content-end">
-                                    <button className="btn btn-primary" type="submit">
+                                <div className="col-xl-12 mt-4 d-flex justify-content-end">
+                                    <button className="btn btn-primary w-100" type="submit">
                                         {isNew ? "Add" : "Edit"} Form
                                     </button>
                                 </div>

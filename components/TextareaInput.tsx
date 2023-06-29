@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-const TextareaInput: FC<any> = ({ index, handleChange, handleBlur, field }) => {
+const TextareaInput: FC<any> = ({ values, handleChange, handleBlur, field }) => {
     return (
         <textarea
             className="form-control"
-            name={`fields.${index}.value`}
+            name={field.title}
             onChange={handleChange}
             onBlur={handleBlur}
-            value={field.value || ""}
+            value={values[field.title] || ""}
             rows={3}
         ></textarea>
     );

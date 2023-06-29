@@ -1,22 +1,21 @@
-// import { type } from "os";
 import * as yup from "yup";
 
-export function createYupSchema(schema, config, currentIndex) {
-    console.log("currentIndex", currentIndex);
+export function createYupSchema(schema, config) {
     const { title, type, required } = config;
     let validationType = "";
-    let validations = [
-        {
-            type: "required",
-            params: ["this field is required"],
-        },
-    ];
+    let validations = [];
 
     if (["text", "number", "textarea", "date", "dateRange", "select", "radio"].includes(type)) {
         validationType = "string";
     } else if (type == "checkbox") {
         validationType = "array";
-        // validations
+    }
+
+    if (required === "true") {
+        validations.push({
+            type: "required",
+            params: ["this field is required"],
+        });
     }
 
     if (!yup[validationType]) {
@@ -28,9 +27,8 @@ export function createYupSchema(schema, config, currentIndex) {
         if (!validator[type]) {
             return;
         }
-        console.log(type, params);
         validator = validator[type](...params);
     });
-    schema[`fields.${currentIndex}.value`] = validator;
+    schema[title] = validator;
     return schema;
 }

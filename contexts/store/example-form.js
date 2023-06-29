@@ -1,14 +1,14 @@
 const exampleForm = {
-    title: "Example Form",
+    title: "Person Information",
     fields: [
         {
-            title: "text input",
+            title: "Fname",
+            label: "First name",
             value: "",
-            label: "Text input label ",
             type: "text",
-            description: "text input description",
+            description: "",
             required: "true",
-            format: "text input regex",
+            format: "",
             options: [
                 {
                     title: "",
@@ -16,13 +16,13 @@ const exampleForm = {
             ],
         },
         {
-            title: "number input",
+            title: "Lname",
+            label: "last name",
             value: "",
-            label: "Number input label ",
-            type: "number",
-            description: "number input description",
+            type: "text",
+            description: "",
             required: "true",
-            format: "number input format",
+            format: "",
             options: [
                 {
                     title: "",
@@ -30,29 +30,32 @@ const exampleForm = {
             ],
         },
         {
-            title: "select box",
+            title: "military",
+            label: "Military service situation",
             value: "",
-            label: "Select box label",
             type: "select",
             description: "",
             required: "true",
             format: "",
             options: [
                 {
-                    title: "option 1",
+                    title: "education pardon",
                 },
                 {
-                    title: "option 2",
+                    title: "permanent exemption",
+                },
+                {
+                    title: "included",
                 },
             ],
         },
         {
-            title: "textarea",
+            title: "nationalCode",
+            label: "National Code",
             value: "",
-            label: "Textarea label",
-            type: "textarea",
+            type: "number",
             description: "",
-            required: "false",
+            required: "true",
             format: "",
             options: [
                 {
@@ -61,9 +64,23 @@ const exampleForm = {
             ],
         },
         {
-            title: "date input",
+            title: "birthPlace",
+            label: "Birth place",
             value: "",
-            label: "Date input label",
+            type: "text",
+            description: "",
+            required: "true",
+            format: "",
+            options: [
+                {
+                    title: "",
+                },
+            ],
+        },
+        {
+            title: "birthday",
+            label: "Birthday",
+            value: "",
             type: "date",
             description: "",
             required: "true",
@@ -75,10 +92,10 @@ const exampleForm = {
             ],
         },
         {
-            title: "date range input",
+            title: "phoneNumber",
+            label: "Phone Number",
             value: "",
-            label: "Date range input label",
-            type: "dateRange",
+            type: "number",
             description: "",
             required: "true",
             format: "",
@@ -89,39 +106,84 @@ const exampleForm = {
             ],
         },
         {
-            title: "checkbox",
+            title: "job",
+            label: "Job",
             value: "",
-            label: "Checkbox label",
+            type: "text",
+            description: "",
+            required: "false",
+            format: "",
+            options: [
+                {
+                    title: "",
+                },
+            ],
+        },
+        {
+            title: "homeNumber",
+            label: "Home phone number",
+            value: "",
+            type: "number",
+            description: "",
+            required: "false",
+            format: "",
+            options: [
+                {
+                    title: "",
+                },
+            ],
+        },
+        {
+            title: "address",
+            label: "Address",
+            value: "",
+            type: "textarea",
+            description: "If possible, enter the address of your residence",
+            required: "false",
+            format: "",
+            options: [
+                {
+                    title: "",
+                },
+            ],
+        },
+        {
+            title: "interests",
+            label: "Interests",
+            value: "",
             type: "checkbox",
             description: "",
             required: "true",
             format: "",
             options: [
                 {
-                    title: "option 1",
+                    title: "Programing",
                 },
                 {
-                    title: "option 2",
+                    title: "Networked systems",
                 },
                 {
-                    title: "option 3",
+                    title: "Designing",
+                },
+                {
+                    title: "hardware",
                 },
             ],
         },
         {
-            title: "radio",
+            title: "gender",
+            label: "Gender",
             value: "",
-            label: "Radio label",
             type: "radio",
             description: "",
-            required: "false",
+            required: "true",
             format: "",
             options: [
                 {
-                    title: "option 1",
+                    title: "man",
                 },
                 {
-                    title: "option 2",
+                    title: "woman",
                 },
             ],
         },
