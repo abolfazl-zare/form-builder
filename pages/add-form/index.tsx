@@ -4,18 +4,22 @@ import formValidation from "./yup";
 import { useStore, SET, ADD } from "../../contexts/store/store";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { Form, Field as FieldInterFace } from "./../../interfaces/form";
 
 const Index: FC<any> = ({ formId }) => {
-    const { forms, action }: any = useStore();
+    const store: any = useStore();
+    const forms: Form[] = store.forms;
+    const { action } = store;
     const router = useRouter();
     const isNew = typeof formId == "undefined";
-    const formIndex = forms?.findIndex((item: any) => item.id === formId);
-    const initialData = {
+    const formIndex = forms?.findIndex((item: Form) => item.id === formId);
+    const initialData: Form = {
         title: "",
         fields: [
             {
                 title: "",
                 label: "",
+                value: "",
                 type: "number",
                 description: "",
                 required: "true",
@@ -33,8 +37,8 @@ const Index: FC<any> = ({ formId }) => {
         }
     }, [formId]);
 
-    const handelForm = (values: any) => {
-        let form = { ...values };
+    const handelForm = (values: Form) => {
+        let form: Form = { ...values };
         if (isNew) {
             form.id = forms ? forms.length : 0;
             action({
@@ -82,6 +86,9 @@ const Index: FC<any> = ({ formId }) => {
                                 );
                             }
                         };
+
+                        console.log(errors);
+
                         return (
                             <form onSubmit={handleSubmit}>
                                 <div className="col-xl-4 mt-5 pb-3">
@@ -105,7 +112,7 @@ const Index: FC<any> = ({ formId }) => {
                                     render={(arrayHelpers: any) => (
                                         <>
                                             {values.fields &&
-                                                values.fields.map((field, index) => (
+                                                values.fields.map((field: FieldInterFace, index) => (
                                                     <div className="container" key={index}>
                                                         <div className="row border border-2  mt-4 pb-3 rounded">
                                                             <div className="d-flex mt-3 align-items-center">

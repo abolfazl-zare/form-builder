@@ -3,7 +3,8 @@ const exampleForm = {
     fields: [
         {
             title: "text input",
-            label: "text input label ",
+            value: "",
+            label: "Text input label ",
             type: "text",
             description: "text input description",
             required: "true",
@@ -16,7 +17,8 @@ const exampleForm = {
         },
         {
             title: "number input",
-            label: "number input label ",
+            value: "",
+            label: "Number input label ",
             type: "number",
             description: "number input description",
             required: "true",
@@ -29,14 +31,15 @@ const exampleForm = {
         },
         {
             title: "select box",
-            label: "select box label",
+            value: "",
+            label: "Select box label",
             type: "select",
             description: "",
             required: "true",
             format: "",
             options: [
                 {
-                    title: "opoption 1",
+                    title: "option 1",
                 },
                 {
                     title: "option 2",
@@ -45,7 +48,8 @@ const exampleForm = {
         },
         {
             title: "textarea",
-            label: "textarea label",
+            value: "",
+            label: "Textarea label",
             type: "textarea",
             description: "",
             required: "false",
@@ -58,7 +62,8 @@ const exampleForm = {
         },
         {
             title: "date input",
-            label: "date input label",
+            value: "",
+            label: "Date input label",
             type: "date",
             description: "",
             required: "true",
@@ -71,7 +76,8 @@ const exampleForm = {
         },
         {
             title: "date range input",
-            label: "date range input label",
+            value: "",
+            label: "Date range input label",
             type: "dateRange",
             description: "",
             required: "true",
@@ -84,7 +90,8 @@ const exampleForm = {
         },
         {
             title: "checkbox",
-            label: "checkbox label",
+            value: "",
+            label: "Checkbox label",
             type: "checkbox",
             description: "",
             required: "true",
@@ -103,7 +110,8 @@ const exampleForm = {
         },
         {
             title: "radio",
-            label: "radio label",
+            value: "",
+            label: "Radio label",
             type: "radio",
             description: "",
             required: "false",
